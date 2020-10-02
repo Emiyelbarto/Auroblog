@@ -15,12 +15,12 @@
           </a>
         </div>
         <p class="text-gray-700 text-base">
-          {{ blog.content }}
+          {{ formatContent(blog.content) }}
         </p>
       </div>
       <div class="flex items-center">
         <div class="text-sm">
-          <p class="text-gray-600">{{ blog.created_at }}</p>
+          <p class="text-gray-600">{{ formatDate(blog.created_at) }}</p>
         </div>
       </div>
     </div>
@@ -37,6 +37,14 @@ export default {
       blogPicture:
         "background-image: url('https://previews.123rf.com/images/antonioguillem/antonioguillem1801/antonioguillem180100009/92609198-portrait-of-a-pensive-woman-holding-a-coffee-mug-looking-at-side-sitting-on-a-sofa-in-the-living-roo.jpg')",
     }
+  },
+  methods: {
+    formatDate(date) {
+      return date.toString().slice(0, 10)
+    },
+    formatContent(content) {
+      if (content.length > 300) return content.substring(0, 300)
+    },
   },
 }
 </script>

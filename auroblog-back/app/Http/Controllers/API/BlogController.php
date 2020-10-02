@@ -12,7 +12,7 @@ class BlogController extends Controller
     {
         $page       = !empty($request->query('page')) ? $request->query('page') : 1;
         $limit      = !empty($request->query('limit')) ? $request->query('limit') : 10;
-        return Blog::paginate($limit, ['*'], 'page', $page);
+        return Blog::latest()->paginate($limit, ['*'], 'page', $page);
     }
 
     public function save(Request $request)
