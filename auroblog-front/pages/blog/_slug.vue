@@ -7,7 +7,9 @@
         <div class="col">
           <img :src="slugData.image" alt="slugData Image" />
         </div>
-        <div class="col">{{ slugData.content }}</div>
+        <div class="col">
+          <span v-html="slugData.content_md" />
+        </div>
       </div>
     </div>
   </div>
