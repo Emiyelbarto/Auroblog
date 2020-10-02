@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,9 @@ Route::post('register', 'API\UserController@register');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('details', 'API\UserController@details');
 });
+
+Route::prefix('blogs')->group(function(){
+    Route::get('', 'API\BlogController@index');
+});
+
+Route::post('register', 'Auth\RegisterController@register');

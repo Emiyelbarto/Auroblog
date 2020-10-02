@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Blog;
+use Illuminate\Support\Str;
 
 class BlogsTableSeeder extends Seeder
 {
@@ -19,10 +20,12 @@ class BlogsTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         for ($i=0; $i < 20; $i++) { 
+            $title = $faker->sentence;
+            $slug = Str::slug($title, "-");
             Blog::create([
-                'title' => $faker->sentence,
+                'title' => $title,
                 'content' => $faker->paragraph,
-                'slug' => $faker->sentence,
+                'slug' => $slug,
             ]);
         }
     }
