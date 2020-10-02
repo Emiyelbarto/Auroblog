@@ -9,6 +9,14 @@
         </div>
       </div>
       <section>
+        <paginate
+          :page-count="totalPages"
+          :click-handler="getBlogs"
+          :prev-text="'Prev'"
+          :next-text="'Next'"
+          :container-class="'className'"
+        >
+        </paginate>
         {{ $ua }}
       </section>
     </div>
@@ -57,7 +65,14 @@ export default {
   },
   methods: {
     getBlogs(queryParams) {
-      return this.$store.dispatch('index/blog/getBlogs', queryParams)
+      if (!isNaN(queryParams)) {
+        console.log('el query params no llego bien')
+        queryParams = `?page=${queryParams}`
+        return this.$store.dispatch('index/blog/getBlogs', queryParams)
+      } else {
+        console.log('el query params llego bien')
+        return this.$store.dispatch('index/blog/getBlogs', queryParams)
+      }
     },
     detectBrowser() {
       const deviceType = this.$ua.deviceType()

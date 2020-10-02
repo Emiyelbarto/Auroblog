@@ -1,4 +1,6 @@
 import Vue from 'vue'
-import SlidingPagination from 'vue-sliding-pagination'
-
-Vue.use(SlidingPagination)
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
+if (process.client) {
+  require('vuejs-paginate')
+}
