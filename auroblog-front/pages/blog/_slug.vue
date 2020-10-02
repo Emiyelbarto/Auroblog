@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1>{{ slug }}</h1>
     <div class="text-black bg-aqua text-center">
       <h1 class="text-uppercase">titulo del blog</h1>
       <hr />
@@ -13,20 +14,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      id: 0,
-    }
-  },
-  computed: {
-    blog() {
-      return this.$store.state.index.blogs.data
-    },
-  },
-  methods: {
-    getBlog() {
-      this.$store.dispatch('/index/blog/' + this.id)
-    },
+  asyncData({ params }) {
+    const slug = params.slug
+    return { slug }
   },
 }
 </script>

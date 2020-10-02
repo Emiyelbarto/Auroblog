@@ -5,7 +5,7 @@
         class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10"
       >
         <div class="lg:w-0 lg:flex-1">
-          <a href="#" class="flex">
+          <a href="/" class="flex">
             <img
               class="h-8 w-auto sm:h-10"
               src="https://www.auronix.mx/hubfs/Auronix_May2017/Images/LogoAuronix1.png"

@@ -1,6 +1,5 @@
 <template>
   <div v-if="blog" id="BCard" class="max-w-sm w-full lg:max-w-full lg:flex">
-    <!--{{ blog }}-->
     <div
       class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
       title="Blog Picture"
@@ -11,7 +10,7 @@
     >
       <div class="mb-8">
         <div class="text-gray-900 font-bold text-xl mb-2">
-          <a :href="blog.slug">
+          <a :href="'/blog/' + blog.slug">
             {{ blog.title }}
           </a>
         </div>
