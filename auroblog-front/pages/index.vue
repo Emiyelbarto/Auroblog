@@ -2,10 +2,10 @@
   <div class="container">
     <div class="py-12 bg-white">
       <div class="max-w-screen-xl mx-auto px-4">
-        <div v-for="n in maxRowBlogs" :key="n" class="row text-center py-6">
-          <div v-for="m in maxColBlogs" :key="m" class="col-6 mt-md-0 mt-3">
-            <b-card />
-          </div>
+        <div v-for="n in blogLength" :key="n" class="row text-center py-6">
+          <b-card :blog="blogs[n]" />
+          <!-- <div v-for="m in maxColBlogs" :key="m" class="col-6 mt-md-0 mt-3">
+          </div> -->
         </div>
       </div>
       <section>
@@ -22,22 +22,21 @@ export default {
     BCard,
   },
   data() {
-    return {
-      maxRowBlogs: 5,
-      maxColBlogs: 2,
-      onchange: {},
-    }
+    return {}
   },
   computed: {
     blogs() {
-      return this.$store.state.index.blogs.data
+      return this.$store.state.index.blog.data
+    },
+    blogLength() {
+      return this.$store.state.index.blog.data.length
     },
     totalPages() {
-      return this.$store.state.index.blogs.totalPages
+      return this.$store.state.index.blog.totalPages
     },
     currentPage: {
       get() {
-        return this.$store.state.index.blogs.currentPage
+        return this.$store.state.index.blog.currentPage
       },
 
       set(value) {
