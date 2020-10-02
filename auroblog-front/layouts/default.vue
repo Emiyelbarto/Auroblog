@@ -18,6 +18,25 @@ export default {
     MainHeader,
     MainFooter,
   },
+  mounted() {
+    this.$nextTick(function () {
+      this.verificarBrowser()
+    })
+  },
+  methods: {
+    verificarBrowser() {
+      if (this.$ua) {
+        const version = parseInt(this.$ua._parsed.version, 10)
+        if (this.$ua._parsed.name === 'Internet Explorer' && version <= 11.0) {
+          console.log('redirect!')
+          this.redirect()
+        }
+      }
+    },
+    redirect() {
+      window.location.href = 'https://browsehappy.com/'
+    },
+  },
 }
 </script>
 

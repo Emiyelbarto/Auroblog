@@ -57,32 +57,17 @@ export default {
     } catch (error) {
       console.error(error)
     }
-    this.$nextTick(function () {
-      this.verificarBrowser()
-    })
   },
   beforeDestroy() {
     this.$store.commit('index/blog/SET_CURRENT_PAGE', 1)
   },
   methods: {
-    verificarBrowser() {
-      if (this.$ua) {
-        const version = parseInt(this.$ua._parsed.version, 10)
-        if (this.$ua._parsed.name === 'Internet Explorer' && version <= 11.0) {
-          console.log('redirect!')
-          this.redirect()
-        }
-      }
-    },
     getBlogs(queryParams) {
       if (this.isNumeric(queryParams)) queryParams = `?page=${queryParams}`
       return this.$store.dispatch('index/blog/getBlogs', queryParams)
     },
     isNumeric(value) {
       return /^-?\d+$/.test(value)
-    },
-    redirect() {
-      window.location.href = 'https://browsehappy.com/'
     },
   },
 }
