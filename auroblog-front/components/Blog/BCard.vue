@@ -10,7 +10,9 @@
     >
       <div class="mb-8">
         <div class="text-gray-900 font-bold text-xl mb-2">
-          {{ tituloBlog }}
+          <a :href="linkBlog">
+            {{ tituloBlog }}
+          </a>
         </div>
         <p class="text-gray-700 text-base">
           {{ descripcionBlog }}
@@ -32,6 +34,7 @@ export default {
       tituloBlog: 'Titulo del blog',
       descripcionBlog: 'lorem lorem',
       fechaBlog: '01/01/2001',
+      linkBlog: 'blog/1',
       blogPicture:
         "background-image: url('https://previews.123rf.com/images/antonioguillem/antonioguillem1801/antonioguillem180100009/92609198-portrait-of-a-pensive-woman-holding-a-coffee-mug-looking-at-side-sitting-on-a-sofa-in-the-living-roo.jpg')",
     }

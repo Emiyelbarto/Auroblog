@@ -2,8 +2,10 @@
   <div class="container">
     <div class="py-12 bg-white">
       <div class="max-w-screen-xl mx-auto px-4">
-        <div v-for="n in maxBlogs" :key="n" class="text-center">
-          <b-card />
+        <div v-for="n in maxRowBlogs" :key="n" class="row text-center py-6">
+          <div v-for="m in maxColBlogs" :key="m" class="col-6 mt-md-0 mt-3">
+            <b-card />
+          </div>
         </div>
       </div>
     </div>
@@ -18,7 +20,8 @@ export default {
   },
   data() {
     return {
-      maxBlogs: 4,
+      maxRowBlogs: 5,
+      maxColBlogs: 2,
       totalPages: 0,
       currentPage: 0,
       onchange: {},
