@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', 'API\UserController@login');
+Route::post('register', 'API\UserController@register');
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('details', 'API\UserController@details');
 });
+
+Route::prefix('blogs')->group(function(){
+    Route::get('', 'App\Http\Controllers\API\BlogController@index');
+    Route::get('/{slug}', 'App\Http\Controllers\API\BlogController@view');
+});
+
+Route::post('register', 'App\Auth\RegisterController@register');

@@ -42,9 +42,8 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
 
@@ -70,6 +69,8 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        Laravel\Passport\PassportServiceProvider::class,
 
         // 'users' => [
         //     'driver' => 'database',
