@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import BCard from '../components/Blog/BCard'
+import BCard from '@/components/Blog/BCard'
 export default {
   components: {
     BCard,
@@ -22,10 +22,41 @@ export default {
     return {
       maxRowBlogs: 5,
       maxColBlogs: 2,
-      totalPages: 0,
-      currentPage: 0,
       onchange: {},
     }
+  },
+  computed: {
+    blogs() {
+      return this.$store.state.blogs.data
+    },
+    totalPages() {
+      return this.$store.state.blogs.totalPages
+    },
+    currentPage: {
+      get() {
+        return this.$store.state.blogs.currentPage
+      },
+
+      set(value) {
+        const queryParams = `?page=${value}`
+        this.getBlogs(queryParams)
+      },
+    },
+  },
+  async mounted() {
+    try {
+      await Promise.all([this.getBlogs('')])
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  beforeDestroy() {
+    this.$store.commit('blogs/SET_CURRENT_PAGE', 1)
+  },
+  methods: {
+    getPaquetes(queryParams) {
+      return this.$store.dispatch('blogs/getData', queryParams)
+    },
   },
 }
 </script>

@@ -1,18 +1,24 @@
 export const state = () => ({
   data: [],
+  currentPage: 1,
+  totalPages: 1,
+  total: 0,
   loading: false,
   errorGet: false,
 })
 
 export const actions = {
-  async getBlogs({ commit }) {
+  async getBlogs({ commit }, queryParams) {
     try {
       commit('TOGGLE_LOADING', true)
       commit('ERROR_GET', false)
 
-      const { data } = await this.$axios.get('/blog/index')
+      const { data } = await this.$axios.get(`/index/blog${queryParams}`)
 
-      commit('SET_DATA', data)
+      commit('SET_DATA', data.data)
+      commit('SET_TOTAL', data.total)
+      commit('SET_TOTAL_PAGES', data.last_page)
+      commit('SET_CURRENT_PAGE', data.current_page)
       commit('TOGGLE_LOADING', false)
     } catch (error) {
       commit('TOGGLE_LOADING', false)
@@ -25,7 +31,19 @@ export const mutation = {
   SET_DATA(state, data) {
     state.data = data
   },
-  ERROR_GET(state, status) {
+  SET_TOTAL(state, total) {
+    state.total = total
+  },
+
+  SET_CURRENT_PAGE(state, currentPage) {
+    state.currentPage = currentPage
+  },
+
+  SET_TOTAL_PAGES(state, totalPages) {
+    state.totalPages = totalPages
+  },
+
+  TOGGLE_ERROR_GET(state, status) {
     state.errorGet = status
   },
   TOGGLE_LOADING(state, status) {
