@@ -4,8 +4,6 @@
       <div class="max-w-screen-xl mx-auto px-4">
         <div v-for="n in blogLength" :key="n" class="row text-center py-6">
           <b-card :blog="blogs[n]" />
-          <!-- <div v-for="m in maxColBlogs" :key="m" class="col-6 mt-md-0 mt-3">
-          </div> -->
         </div>
       </div>
       <section>
@@ -14,10 +12,10 @@
           :click-handler="getBlogs"
           :prev-text="'Prev'"
           :next-text="'Next'"
-          :container-class="'className'"
+          container-class="row box-content h-10 w-full p-4 border-4 border-gray-400 bg-gray-200"
+          page-class="col px-3"
         >
         </paginate>
-        {{ $ua }}
       </section>
     </div>
   </div>
@@ -59,11 +57,23 @@ export default {
     } catch (error) {
       console.error(error)
     }
+    this.$nextTick(function () {
+      this.verificarBrowser()
+    })
   },
   beforeDestroy() {
     this.$store.commit('index/blog/SET_CURRENT_PAGE', 1)
   },
   methods: {
+    verificarBrowser() {
+      if (this.$ua) {
+        const version = parseInt(this.$ua._parsed.version, 10)
+        if (this.$ua._parsed.name === 'Internet Explorer' && version <= 11.0) {
+          console.log('redirect!')
+          this.redirect()
+        }
+      }
+    },
     getBlogs(queryParams) {
       if (this.isNumeric(queryParams)) queryParams = `?page=${queryParams}`
       return this.$store.dispatch('index/blog/getBlogs', queryParams)
@@ -71,10 +81,8 @@ export default {
     isNumeric(value) {
       return /^-?\d+$/.test(value)
     },
-    detectBrowser() {
-      const deviceType = this.$ua.deviceType()
-      this.deviceType = deviceType
-      console.log(deviceType)
+    redirect() {
+      window.location.href = 'https://browsehappy.com/'
     },
   },
 }

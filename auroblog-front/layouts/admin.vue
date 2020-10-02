@@ -1,5 +1,6 @@
 <template>
   <div>
+    <admin-sidebar></admin-sidebar>
     <div>
       <admin-header />
     </div>
