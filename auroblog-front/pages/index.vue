@@ -2,22 +2,8 @@
   <div class="container">
     <div class="py-12 bg-white">
       <div class="max-w-screen-xl mx-auto px-4">
-        <div class="text-center">
-          <div class="max-w-sm rounded overflow-hidden shadow-lg">
-            <img
-              class="w-full"
-              src="/img/card-top.jpg"
-              alt="Sunset in the mountains"
-            />
-            <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">Titulo del blog</div>
-              <p class="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
-              </p>
-            </div>
-          </div>
+        <div v-for="n in maxBlogs" :key="n" class="text-center">
+          <b-card />
         </div>
       </div>
     </div>
@@ -25,9 +11,17 @@
 </template>
 
 <script>
+import BCard from '../components/Blog/BCard'
 export default {
+  components: {
+    BCard,
+  },
   data() {
     return {
+      maxBlogs: 4,
+      totalPages: 0,
+      currentPage: 0,
+      onchange: {},
     }
   },
 }
