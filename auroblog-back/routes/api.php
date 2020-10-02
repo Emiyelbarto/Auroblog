@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 Route::prefix('blogs')->group(function(){
     Route::get('', 'App\Http\Controllers\API\BlogController@index');
+    Route::get('/{slug}', 'App\Http\Controllers\API\BlogController@view');
 });
 
 Route::post('register', 'App\Auth\RegisterController@register');

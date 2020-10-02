@@ -1,12 +1,13 @@
 <template>
   <div class="container">
-    <h1>{{ slug }}</h1>
     <div class="text-black bg-aqua text-center">
-      <h1 class="text-uppercase">titulo del blog</h1>
+      <h1 class="text-uppercase">{{ slugData.title }}</h1>
       <hr />
       <div class="row">
-        <div class="col">imagen blog</div>
-        <div class="col">texto blog</div>
+        <div class="col">
+          <img :src="slugData.image" alt="slugData Image" />
+        </div>
+        <div class="col">{{ slugData.content }}</div>
       </div>
     </div>
   </div>
@@ -17,6 +18,23 @@ export default {
   asyncData({ params }) {
     const slug = params.slug
     return { slug }
+  },
+  computed: {
+    slugData() {
+      return this.$store.state.index.blog.dataView
+    },
+  },
+  async mounted() {
+    try {
+      await Promise.all([this.getData(this.slug)])
+    } catch (error) {
+      console.error(error)
+    }
+  },
+  methods: {
+    getData(slug) {
+      return this.$store.dispatch('index/blog/getBlogFromSlug', slug)
+    },
   },
 }
 </script>

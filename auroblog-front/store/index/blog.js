@@ -1,5 +1,6 @@
 export const state = () => ({
   data: [],
+  dataView: [],
   currentPage: 1,
   totalPages: 1,
   total: 0,
@@ -25,12 +26,32 @@ export const actions = {
       commit('TOGGLE_ERROR_GET', true)
     }
   },
+
+  async getBlogFromSlug({ commit }, slug) {
+    try {
+      commit('TOGGLE_LOADING', true)
+      commit('TOGGLE_ERROR_GET', false)
+
+      const { data } = await this.$axios.get(`/blogs/${slug}`)
+
+      commit('SET_DATA_VIEW', data)
+      commit('TOGGLE_LOADING', false)
+    } catch (error) {
+      commit('TOGGLE_LOADING', false)
+      commit('TOGGLE_ERROR_GET', true)
+    }
+  },
 }
 
 export const mutations = {
   SET_DATA(state, data) {
     state.data = data
   },
+
+  SET_DATA_VIEW(state, data) {
+    state.dataView = data
+  },
+
   SET_TOTAL(state, total) {
     state.total = total
   },
