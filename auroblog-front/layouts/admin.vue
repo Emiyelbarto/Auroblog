@@ -1,9 +1,24 @@
 <template>
-  <div>admin layout</div>
+  <div>
+    <div>
+      <admin-header />
+    </div>
+    <Nuxt />
+    <div>
+      <admin-footer />
+    </div>
+  </div>
 </template>
 
 <script>
+import AdminHeader from '../components/adminHeader'
+import AdminSidebar from '../components/adminSidebar'
+import AdminFooter from '../components/adminFooter'
 export default {
-  layout: 'admin',
+  components: {
+    AdminHeader,
+    AdminSidebar,
+    AdminFooter,
+  },
 }
 </script>
