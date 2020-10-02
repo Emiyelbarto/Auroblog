@@ -39,6 +39,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'bootstrap-vue/nuxt',
+    'nuxt-user-agent',
   ],
 
   bootstrapVue: {

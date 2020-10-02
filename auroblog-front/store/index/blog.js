@@ -11,9 +11,9 @@ export const actions = {
   async getBlogs({ commit }, queryParams) {
     try {
       commit('TOGGLE_LOADING', true)
-      commit('ERROR_GET', false)
+      commit('TOGGLE_ERROR_GET', false)
 
-      const { data } = await this.$axios.get(`/index/blog${queryParams}`)
+      const { data } = await this.$axios.get(`/blogs${queryParams}`)
 
       commit('SET_DATA', data.data)
       commit('SET_TOTAL', data.total)
@@ -22,7 +22,7 @@ export const actions = {
       commit('TOGGLE_LOADING', false)
     } catch (error) {
       commit('TOGGLE_LOADING', false)
-      commit('ERROR_GET', true)
+      commit('TOGGLE_ERROR_GET', true)
     }
   },
 }

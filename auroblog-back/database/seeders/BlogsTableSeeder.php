@@ -19,13 +19,14 @@ class BlogsTableSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
 
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 50; $i++) { 
             $title = $faker->sentence;
             $slug = Str::slug($title, "-");
             Blog::create([
                 'title' => $title,
                 'content' => $faker->paragraph,
                 'slug' => $slug,
+                'image' => $faker->imageUrl(100, 100),
             ]);
         }
     }

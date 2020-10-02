@@ -20,12 +20,12 @@ export default {
   },
   computed: {
     blog() {
-      return this.$store.state.blogs.data
+      return this.$store.state.index.blogs.data
     },
   },
   methods: {
     getBlog() {
-      this.$store.dispatch('blog/' + this.id)
+      this.$store.dispatch('/index/blog/' + this.id)
     },
   },
 }

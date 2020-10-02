@@ -8,6 +8,9 @@
           </div>
         </div>
       </div>
+      <section>
+        {{ $ua }}
+      </section>
     </div>
   </div>
 </template>
@@ -27,14 +30,14 @@ export default {
   },
   computed: {
     blogs() {
-      return this.$store.state.blogs.data
+      return this.$store.state.index.blogs.data
     },
     totalPages() {
-      return this.$store.state.blogs.totalPages
+      return this.$store.state.index.blogs.totalPages
     },
     currentPage: {
       get() {
-        return this.$store.state.blogs.currentPage
+        return this.$store.state.index.blogs.currentPage
       },
 
       set(value) {
@@ -51,11 +54,16 @@ export default {
     }
   },
   beforeDestroy() {
-    this.$store.commit('blogs/SET_CURRENT_PAGE', 1)
+    this.$store.commit('index/blog/SET_CURRENT_PAGE', 1)
   },
   methods: {
-    getPaquetes(queryParams) {
-      return this.$store.dispatch('blogs/getData', queryParams)
+    getBlogs(queryParams) {
+      return this.$store.dispatch('index/blog/getBlogs', queryParams)
+    },
+    detectBrowser() {
+      const deviceType = this.$ua.deviceType()
+      this.deviceType = deviceType
+      console.log(deviceType)
     },
   },
 }

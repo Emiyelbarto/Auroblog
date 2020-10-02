@@ -14,4 +14,10 @@ class BlogController extends Controller
         $limit      = !empty($request->query('limit')) ? $request->query('limit') : 10;
         return Blog::paginate($limit, ['*'], 'page', $page);
     }
+
+    public function store(Request $request)
+    {
+        $blog = Blog::create($request->all());
+        
+    }
 }
