@@ -65,14 +65,11 @@ export default {
   },
   methods: {
     getBlogs(queryParams) {
-      if (!isNaN(queryParams)) {
-        console.log('el query params no llego bien')
-        queryParams = `?page=${queryParams}`
-        return this.$store.dispatch('index/blog/getBlogs', queryParams)
-      } else {
-        console.log('el query params llego bien')
-        return this.$store.dispatch('index/blog/getBlogs', queryParams)
-      }
+      if (this.isNumeric(queryParams)) queryParams = `?page=${queryParams}`
+      return this.$store.dispatch('index/blog/getBlogs', queryParams)
+    },
+    isNumeric(value) {
+      return /^-?\d+$/.test(value)
     },
     detectBrowser() {
       const deviceType = this.$ua.deviceType()
