@@ -1,32 +1,36 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">auroblog-front</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <div class="py-12 bg-white">
+      <div class="max-w-screen-xl mx-auto px-4">
+        <div class="text-center">
+          <div class="max-w-sm rounded overflow-hidden shadow-lg">
+            <img
+              class="w-full"
+              src="/img/card-top.jpg"
+              alt="Sunset in the mountains"
+            />
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">Titulo del blog</div>
+              <p class="text-gray-700 text-base">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptatibus quia, nulla! Maiores et perferendis eaque,
+                exercitationem praesentium nihil.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+    }
+  },
+}
 </script>
 
 <style>
