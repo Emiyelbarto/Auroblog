@@ -5,8 +5,9 @@
     </div>
     <div>
       <p>Pagina para editar blogs siendo admin</p>
-      <b-table striped hover :items="items"></b-table>
+      <b-table striped hover :items="blogs"></b-table>
     </div>
+    {{ blogs }}
   </div>
 </template>
 
@@ -43,6 +44,39 @@ export default {
       ],
     }
   },
-  computed: {},
+  computed: {
+    blogs() {
+      return this.$store.state.admin.blog.data
+    },
+    blogLength() {
+      return this.$store.state.admin.blog.data.length
+    },
+    totalPages() {
+      return this.$store.state.admin.blog.totalPages
+    },
+    currentPage: {
+      get() {
+        return this.$store.state.admin.blog.currentPage
+      },
+
+      set(value) {
+        const queryParams = `?page=${value}`
+        this.getBlogs(queryParams)
+      },
+    },
+  },
+  async mounted() {
+    try {
+      await Promise.all([this.getBlogs('')])
+    } catch (error) {}
+  },
+  beforeDestroy() {
+    this.$store.commit('admin/blog/SET_CURRENT_PAGE', 1)
+  },
+  methods: {
+    getBlogs(queryParams) {
+      return this.$store.dispatch('admin/blog/getData', queryParams)
+    },
+  },
 }
 </script>
