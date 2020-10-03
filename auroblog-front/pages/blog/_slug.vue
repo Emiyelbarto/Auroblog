@@ -29,9 +29,7 @@ export default {
   async mounted() {
     try {
       await Promise.all([this.getData(this.slug)])
-    } catch (error) {
-      console.error(error)
-    }
+    } catch (error) {}
   },
   methods: {
     getData(slug) {

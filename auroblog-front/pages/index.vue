@@ -54,9 +54,7 @@ export default {
   async mounted() {
     try {
       await Promise.all([this.getBlogs('')])
-    } catch (error) {
-      console.error(error)
-    }
+    } catch (error) {}
   },
   beforeDestroy() {
     this.$store.commit('index/blog/SET_CURRENT_PAGE', 1)
