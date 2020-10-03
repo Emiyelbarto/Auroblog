@@ -1,7 +1,7 @@
 <template>
   <div>
     <admin-sidebar></admin-sidebar>
-    <div>
+    <div class="container">
       <admin-header />
     </div>
     <Nuxt />

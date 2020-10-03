@@ -30,7 +30,10 @@
 <script>
 export default {
   props: {
-    blog: Object,
+    blog: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {

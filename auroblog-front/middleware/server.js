@@ -1,6 +1,5 @@
 export default function (req, res, next) {
   // req is the Node.js http request object
-  console.log(req.url)
 
   // res is the Node.js http response object
 
@@ -8,7 +7,6 @@ export default function (req, res, next) {
   // Don't forget to call next at the end if your middleware is not an endpoint!
   next()
   if (req.path === '/redirect') {
-    console.log('redirect!')
     res.redirect(301, 'https://browsehappy.com/')
   }
 }

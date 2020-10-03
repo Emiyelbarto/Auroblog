@@ -16,7 +16,6 @@ export default {
     redirect,
     error,
   }) {
-    console.log('redirect!')
     window.location = 'https://browsehappy.com/'
   },
 }
